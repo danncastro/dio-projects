@@ -1,4 +1,4 @@
-package iphone.smartphone;
+package iphone;
 
 import iphone.navegador_internet.AdicionaNovasAbas;
 import iphone.navegador_internet.AtualizaPagina;
@@ -16,27 +16,27 @@ import iphone.telefone.RecebeLigacoes;
 public class Smartphone{
     public static void main(String[] args) {
         AdicionaNovasAbas addAbas = new Browser();
-        AtualizaPagina addPagina = new Browser();
+        AtualizaPagina attPagina = new Browser();
         ExibePaginas exibePaginas = new Browser();
 
-        PausaMusica pauseMusica = new Ipod();
         SelecionaMusica selecioneMusica = new Ipod();
         TocaMusica toqueMusica = new Ipod();
+        PausaMusica pauseMusica = new Ipod();
 
         CorreioDeVoz correioDeVoz = new Phone();
         FazLigacoes fazLigacoes = new Phone();
         RecebeLigacoes recebeLigacoes = new Phone();
 
         addAbas.adicionarNovaAba();
-        addPagina.atualizarPagina();
+        attPagina.atualizarPagina();
         exibePaginas.exibirPaginas();
 
-        pauseMusica.pausarMusica();
         selecioneMusica.selecionarMusica();
         toqueMusica.tocarMusica();
+        recebeLigacoes.receberLigacoes();
+        pauseMusica.pausarMusica();
 
         correioDeVoz.receberCorreiosDeVoz();
         fazLigacoes.fazerLigacoes();
-        recebeLigacoes.receberLigacoes();
     }
 }

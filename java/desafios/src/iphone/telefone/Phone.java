@@ -9,7 +9,7 @@ public class Phone implements CorreioDeVoz, FazLigacoes, RecebeLigacoes {
 
     @Override
     public void fazerLigacoes() {
-        System.out.println("DISCANDO");
+        System.out.println("DISCANDO PARA O NÚMERO QUE LIGOU");
     }
 
     @Override
