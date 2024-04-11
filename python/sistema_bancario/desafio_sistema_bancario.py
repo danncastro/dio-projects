@@ -44,8 +44,8 @@ while True:
         print(f"\nSaldo em conta: R${saldo:.2f}")
 
     elif menu_opcao == 4:
-        print(f"Obrigado por ser nosso cliente")
+        print(f"*"*10, "Obrigado por ser nosso cliente","*"*10)
         break
 
     else:
-        print("Operação falhou!")
+        print("#"* 10, "Operação falhou!", "#"* 10)
