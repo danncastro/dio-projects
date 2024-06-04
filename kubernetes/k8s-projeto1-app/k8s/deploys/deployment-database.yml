@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-projeto1-app-deploy
+
+spec:
+  template:
+    metadata:
+      name: mysql-projeto1-app
+      labels:
+        mysql-app: mysql-projeto1-app
+
+    spec:
+      containers:
+      - name: mysql-projeto1-app
+        image: danncastro/k8s-projeto1-app-database:1.0
+        args:
+        - "--ignore-db-dir=lost+found"
+        imagePullPolice: Always
+
+        ports:
+        - containerPort: 3306
+          name: "mysql-projeto1-app"
+
+        volumeMounts:
+        - name: mysql-data-persistent
+          mountPath: "/var/lib/mysql"
+
+      volumes:
+      - name: mysql-data-persistent
+        persistentVolumeClaim:
+          claimName: mysql-projeto1-app-pvc
+
+  selector:
+    matchLabels:
+      mysql-app: mysql-projeto1-app

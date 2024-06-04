@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-projeto1-app-deploy
+
+spec:
+  template:
+    metadata:
+      name: php-projeto1-app
+      labels:
+        php-app: php-projeto1-app
+
+    spec:
+      containers:
+      - name: php-projeto1-app
+        image: danncastro/k8s-projeto1-app-backend:1.0
+        args:
+        imagePullPolice: Always
+
+        ports:
+        - containerPort: 8080
+          name: "php-projeto1-app"
+
+  selector:
+    matchLabels:
+      php-app: php-projeto1-app
+  replicas: 3
