@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-projeto2-app-deploy
+
+spec:
+  template:
+    metadata:
+      name: mysql-projeto2-app
+      labels:
+        mysql-app: mysql-projeto2-app
+
+    spec:
+      containers:
+      - name: mysql-projeto2-app
+        image: mysql:latest
+        imagePullPolice: Always
+        env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: ROOT_PASSWORD
+                  
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MYSQL_DATABASE
+
+        ports:
+        - containerPort: 3306
+          name: "mysql-projeto2-app"
+
+        volumeMounts:
+        - name: mysql-data-persistent
+          mountPath: "/var/lib/mysql"
+
+      volumes:
+      - name: mysql-data-persistent
+        persistentVolumeClaim:
+          claimName: mysql-projeto2-app-pvc
+
+  selector:
+    matchLabels:
+      mysql-app: mysql-projeto2-app

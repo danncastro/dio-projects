@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-projeto2-app-svc
+
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+
+  selector:
+    php-app: php-projeto2-app
